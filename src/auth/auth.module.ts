@@ -5,6 +5,7 @@ import { PrismaService } from 'src/prisma/service';
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 
 @Module({
@@ -17,12 +18,12 @@ import { JwtModule } from '@nestjs/jwt';
       useFactory: ( configService: ConfigService) => {
         return {
           secret: configService.get("JWT_SECRET"),
-          signOptions: { expiresIn: '60s' },
+          signOptions: { expiresIn: '1hr' },
         }
       }
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService, PrismaService],
+  providers: [AuthService, PrismaService, JwtStrategy],
 })
 export class AuthModule {}

@@ -8,6 +8,7 @@ export class ContactService {
     return 'This action adds a new contact';
   }
 
+  
   findAll() {
     return `This action returns all contact`;
   }
