@@ -52,9 +52,11 @@ $ docker compose up
 
 ## Configura las variables de entorno en un archivo .env (crea el archivo si no existe):
 
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/tournament-db"
-JWT_SECRET="un_valor_seleccionado"
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/"
+JWT_SECRET="THIS_IS_YOUR_SECRET_KEY"
 PORT=3000
+```
 
 ## Ejecutar la Aplicación
 
