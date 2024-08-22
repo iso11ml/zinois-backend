@@ -22,17 +22,41 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descripción
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este es un repositorio de inicio para un proyecto en TypeScript utilizando el framework [NestJS](https://github.com/nestjs/nest).
 
-## Installation
+## Clonación del Repositorio
+
+Primero, clona el repositorio a tu máquina local:
+
+```bash
+$ git clone <URL del repositorio>
+```
+
+
+1.- Clonamos el repositorio
+
+## Intalación
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Levanta la base de datos usando Docker y Docker Compose:
+
+```bash
+$ docker compose up
+
+```
+
+## Configura las variables de entorno en un archivo .env (crea el archivo si no existe):
+
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/tournament-db"
+JWT_SECRET="un_valor_seleccionado"
+PORT=3000
+
+## Ejecutar la Aplicación
 
 ```bash
 # development
