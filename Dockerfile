@@ -20,6 +20,7 @@ COPY . .
 # Genera el cliente Prisma
 RUN npx prisma generate
 
+
 # Construye el proyecto
 RUN npm run build
 
