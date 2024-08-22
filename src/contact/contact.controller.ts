@@ -2,9 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { ContactService } from './contact.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
-import { AuthGuard } from '@nestjs/passport';
 
-@Controller('contact')
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/decorators/get-user.decorator';
+import { User } from 'src/auth/interfaces/user-interface';
+
+@Controller('contacts')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
@@ -15,8 +18,8 @@ export class ContactController {
 
   @Get()
   @UseGuards ( AuthGuard ())
-  findAll() {
-    return this.contactService.findAll();
+  findAll(@GetUser() user: User) {
+    return this.contactService.findAll(user.id);
   }
 
   @Get(':id')

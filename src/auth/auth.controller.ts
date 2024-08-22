@@ -4,12 +4,13 @@ import { CreateUserDto } from './dto/create.user.dto';
 import { LoginUserDto } from './dto/login-user-dto';
 
 
-@Controller('authentication')
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post("/register")
   signUp(@Body() createUserDto: CreateUserDto) {
+    console.log('Ok')
     return this.authService.signUp(createUserDto);
   }
 
@@ -18,3 +19,4 @@ export class AuthController {
     return this.authService.signIn(loginUserDto);
   }
 }
+

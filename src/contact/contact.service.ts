@@ -1,16 +1,42 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
+import { PrismaService } from 'src/prisma/service';
 
 @Injectable()
 export class ContactService {
-  create(createContactDto: CreateContactDto) {
-    return 'This action adds a new contact';
+
+  constructor( private readonly prisma: PrismaService){}
+
+  async create(createContactDto: CreateContactDto) {
+
+    const owner = await this.prisma.user.findUnique({
+      where: {
+        id: createContactDto.userId
+      }
+    })
+
+    if(!owner) throw new BadRequestException('The user is trying to register a contact that does not exist.')
+
+
+    const newContact = await this.prisma.contact.create({
+      data: {
+        ...createContactDto
+      }
+    })
+
+    return newContact
   }
 
   
-  findAll() {
-    return `This action returns all contact`;
+  async findAll(userId: string ) {
+    const contacts = await this.prisma.contact.findMany({
+      where:{
+        userId: userId
+      }
+    })
+
+    return contacts
   }
 
   findOne(id: number) {

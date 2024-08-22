@@ -40,7 +40,7 @@ export class AuthService {
 
     return {
       account: user,
-      access_token: await this.getJwtToken(payload),
+      token: await this.getJwtToken(payload),
     }
   }
 
@@ -62,7 +62,7 @@ export class AuthService {
 
     return {
       account: user,
-      access_token: {
+      token: {
         token: await this.getJwtToken(payload),
       }
     };
