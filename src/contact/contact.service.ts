@@ -18,7 +18,6 @@ export class ContactService {
 
     if(!owner) throw new BadRequestException('The user is trying to register a contact that does not exist.')
 
-
     const newContact = await this.prisma.contact.create({
       data: {
         ...createContactDto
@@ -43,11 +42,27 @@ export class ContactService {
     return `This action returns a #${id} contact`;
   }
 
-  update(id: number, updateContactDto: UpdateContactDto) {
-    return `This action updates a #${id} contact`;
+  async update(id: string, updateContactDto: UpdateContactDto) {
+
+    const updateContact = await this.prisma.contact.update({
+      where:{
+        id: id
+      },
+      data:{ 
+        ...updateContactDto
+      }
+    })
+
+    return updateContact
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} contact`;
+  async remove(id: string) {
+    const eliminated = await this.prisma.contact.delete({
+      where:{
+        id: id
+      }
+    })
+
+    return eliminated
   }
 }
