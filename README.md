@@ -54,7 +54,9 @@ $ docker compose up
 
 ```bash
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/"
+
 JWT_SECRET="THIS_IS_YOUR_SECRET_KEY"
+
 PORT=3000
 ```
 
